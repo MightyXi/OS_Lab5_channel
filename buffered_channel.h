@@ -38,7 +38,8 @@ public:
         while (buff.empty()) {
             newsignal.wait(locker);
         }
-        T value = buff.pop();
+        T value = buff.front();
+            buff.pop();
         newsignal.notify_one();
         return {value, false};
     }
